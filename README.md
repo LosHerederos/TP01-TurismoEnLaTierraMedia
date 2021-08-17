@@ -1,3 +1,3 @@
 # TP01 - Turismo en la Tierra Media
 
-[Consigna](./_consigna/TP001 - Turismo en la Tierra Media, Capítulo I.pdf)
+[Consigna](_consigna%2FTP001%20-%20Turismo%20en%20la%20Tierra%20Media%2C%20Cap%C3%ADtulo%20I.pdf)
