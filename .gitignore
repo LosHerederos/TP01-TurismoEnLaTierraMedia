@@ -2,4 +2,8 @@
 bin/
 .settings
 
+# Ignorar backup de imagenes
 *.bak.png
+
+# Ignorar archivos de salida
+*.out
