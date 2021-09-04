@@ -1,4 +1,4 @@
-# tipo promocion / nombre / atracciones ( | ) / otros
-PromocionPorcentual, Pack aventura, (Bosque Negro | Mordor), 20.0
-PromocionAbsoluta, Pack degustación, (Lothlórien | La Comarca), 36
-PromocionAxB, Pack paisajes, (Erebor), (Minas Tirith | Abismo de Helm)
+# tipo promocion / nombre / atracciones ( : ) / otros
+PromocionPorcentual, Pack aventura, (Bosque Negro : Mordor), 20.0
+PromocionAbsoluta, Pack degustación, (Lothlórien : La Comarca), 36
+PromocionAXB, Pack paisajes, (Erebor), (Minas Tirith : Abismo de Helm)

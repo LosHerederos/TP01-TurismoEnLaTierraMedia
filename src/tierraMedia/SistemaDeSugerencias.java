@@ -1,6 +1,7 @@
 package tierraMedia;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class SistemaDeSugerencias {
 
@@ -9,16 +10,16 @@ public class SistemaDeSugerencias {
 	public SistemaDeSugerencias() {
 		Usuario usuario = new Usuario();
 		System.out.println(mensaje);
-		Archivos.cargarUsuarios();
-		Archivos.cargarAtracciones();
-		Archivos.cargarPromociones();
+		// System.out.println(Arrays.toString(Archivos.cargarUsuarios()));
+		// System.out.println(Arrays.toString(Archivos.cargarAtracciones()));
+		// Archivos.cargarPromociones(Arrays.toString(Archivos.cargarAtracciones()));
 		
-		try {
-			Archivos.generarArchivoDeSalida(usuario, "miArchivo.out");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Archivos.generarArchivoDeSalida(usuario, "miArchivo.out");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	
