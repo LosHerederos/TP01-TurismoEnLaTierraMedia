@@ -2,12 +2,15 @@ package tierraMedia;
 
 public class PromocionAbsoluta extends Promocion {
 	private int descuento;
-	PromocionAbsoluta(int descuento){
+	public PromocionAbsoluta(String nombre, Atraccion atraccion,int descuento){
+		super();
+		this.setNombre(nombre);
+		this.setAtraccion(atraccion);
 		this.setDescuento(descuento);
 	}
-	PromocionAbsoluta(){
-		super();
-	}
+	
+	
+
 	public int getDescuento() {
 		return descuento;
 	}
