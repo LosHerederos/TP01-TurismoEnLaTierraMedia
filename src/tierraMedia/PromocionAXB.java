@@ -1,6 +1,5 @@
 package tierraMedia;
 
-//Comentario
 public class PromocionAXB extends Promocion {
 	
 	
