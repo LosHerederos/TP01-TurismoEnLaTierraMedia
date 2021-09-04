@@ -1,17 +1,17 @@
 package tierraMedia;
 
 public class Atraccion implements Sugeribles {
-	enum Tipo {Aventura, Paisaje, Degustación, terror};
+	
 	
 	private int costoVisita;
-	private int tiempoParaRealizarla;
+	private double tiempoParaRealizarla;
 	private int cupoPersonas;
-	private Tipo tipoDeAtraccion;
+	private TipoDeAtracciones tipoDeAtraccion;
 	private int visitantes;
 	private String nombre;
 		
 	// constructor
-	public Atraccion(int costo, int tiempo, int cupo, Tipo tipoAtraccion, String nombre ) {
+	public Atraccion(int costo, double tiempo, int cupo, TipoDeAtracciones tipoAtraccion, String nombre ) {
 		this.setCostoVisita(costo);
 		this.setTiempoParaRealizarla(tiempo);
 		this.setCupoPersonas(cupo); 
@@ -43,7 +43,7 @@ public class Atraccion implements Sugeribles {
 		
 	@Override
 	public void setCostoVisita(int costoVisita) {
-		if (this.costoVisita < 0) {
+		if (costoVisita < 0) {
 			Error costoNegativo = new Error("El costo de la atracción "+ this.nombre + " no puede ser negativo");
 			throw costoNegativo;
 		}
@@ -52,13 +52,13 @@ public class Atraccion implements Sugeribles {
 	}
 
 	@Override
-	public int getTiempoParaRealizarla() {
+	public double getTiempoParaRealizarla() {
 		return this.tiempoParaRealizarla;
 	}
 
 	@Override
-	public void setTiempoParaRealizarla(int tiempoParaRealizarla) {
-		if (this.tiempoParaRealizarla <= 0) {
+	public void setTiempoParaRealizarla(double tiempoParaRealizarla) {
+		if (tiempoParaRealizarla <= 0) {
 			Error tiempoInvalido = new Error("El tiempo que insume visitar la atracción "+ this.nombre + " no puede ser cero ni negativo");
 			throw tiempoInvalido;
 		}
@@ -73,7 +73,7 @@ public class Atraccion implements Sugeribles {
 
 	@Override
 	public void setCupoPersonas(int cupoPersonas) {
-		if (this.cupoPersonas <= 0) {
+		if (cupoPersonas <= 0) {
 			Error cupoPersonasInvalido = new Error("El cupo de personas de la atracción "+ this.nombre + " no puede ser cero ni negativo");
 			throw cupoPersonasInvalido;
 		}
@@ -81,14 +81,15 @@ public class Atraccion implements Sugeribles {
 		this.cupoPersonas = cupoPersonas;
 	}
 
+	
 	@Override
-	public Tipo getTipoDeAtraccion() {
+	public TipoDeAtracciones getTipoDeAtraccion() {
 		return this.tipoDeAtraccion;
 	}
 		
 	// ¿Cómo valído que tipo de atracción sea de tipo enumerado correcto?
 	@Override
-	public void setTipoDeAtraccion(Tipo tipoDeAtraccion) {
+	public void setTipoDeAtraccion(TipoDeAtracciones tipoDeAtraccion) {
 		this.tipoDeAtraccion = tipoDeAtraccion;
 	}
 
@@ -99,7 +100,7 @@ public class Atraccion implements Sugeribles {
 
 	@Override
 	public void setVisitantes(int visitantes) {
-		if (this.visitantes < 0) {
+		if (visitantes < 0) {
 			Error visitantesNegativo = new Error("El número de visitantes de la atracción "+ this.nombre + " no puede ser negativo");
 			throw visitantesNegativo;
 		}
