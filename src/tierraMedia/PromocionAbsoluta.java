@@ -1,11 +1,13 @@
 package tierraMedia;
 
+import java.util.List;
+
 public class PromocionAbsoluta extends Promocion {
 	private int descuento;
-	public PromocionAbsoluta(String nombre, Atraccion atraccion,int descuento){
+	public PromocionAbsoluta(String nombre, List<Atraccion> atracciones,int descuento){
 		super();
 		this.setNombre(nombre);
-		this.setAtraccion(atraccion);
+		this.setAtraccion((Atraccion) atracciones);
 		this.setDescuento(descuento);
 	}
 	
