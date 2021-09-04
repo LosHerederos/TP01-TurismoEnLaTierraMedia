@@ -1,5 +1,6 @@
 package tierraMedia;
 
+//Comentario
 public class PromocionPorcentual extends Promocion {
 	private final double porcentajeDeDescuento = 0.2;
 	//archivo de promociones nombre de la atraccion y tipo de promocion

@@ -1,5 +1,6 @@
 package tierraMedia;
 
+// Comentario
 public abstract class Promocion implements Sugeribles {
 	private String nombre;
 	private Atraccion atracciones[];
