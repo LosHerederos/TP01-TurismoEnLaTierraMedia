@@ -1,8 +1,13 @@
 package tierraMedia;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class Promocion implements Sugeribles {
 	private String nombre;
-	private Atraccion atracciones[];
+	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
+	private TipoDeAtracciones tipoDeAtracciones;
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -11,17 +16,43 @@ public abstract class Promocion implements Sugeribles {
 		this.nombre = nombre;
 	}
 
+	public void setAtraccion(Atraccion atraccion) {
+		atracciones.add(atraccion);
+	}
+
+	@Override
 	public int getCosto() {
-		return (0);
+		int costoTotal = 0;
+		for (Atraccion atraccion : atracciones) {
+			if (atraccion.getNombre() == this.getNombre()) {
+				costoTotal += atraccion.getCosto();
+			}
+
+		}
+
+		return (costoTotal);
+
 	}
 
+	@Override
 	public double getTiempo() {
-		return (0);
+
+		int tiempoTotal = 0;
+		for (Atraccion atraccion : atracciones) {
+			if (atraccion.getNombre() == this.getNombre()) {
+				tiempoTotal += atraccion.getCosto();
+			}
+
+		}
+
+		return (tiempoTotal);
+
 	}
 
-	public TipoDeAtracciones getTipoDeAtraccion() {
-		return null;
+	@Override
+	public TipoDeAtracciones getTipoDeAtracciones() {
+		return (this.tipoDeAtracciones);
 	}
 
-	abstract double reduccionCostoTotal();
+	abstract double reduccionCostoTotal(Double valor);
 }
