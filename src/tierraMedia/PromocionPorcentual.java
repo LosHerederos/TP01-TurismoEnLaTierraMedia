@@ -1,29 +1,32 @@
 package tierraMedia;
 
-public class PromocionPorcentual extends Promocion {
-	private final double porcentajeDeDescuento = 0.2;
-	//archivo de promociones nombre de la atraccion y tipo de promocion
-	private String archivo[][];
-	private Atraccion atracciones[];
+import java.util.List;
 
-	@Override
-	protected double reduccionCostoTotal() {
-		return calculoPromocion();
+public class PromocionPorcentual extends Promocion {
+	private double porcentaje;
+
+	public PromocionPorcentual(String nombre, List<Atraccion> atracciones, double porcentaje) {
+		super.getNombre();
+		super.setAtraccion(atracciones);
+		this.setPorcentaje(porcentaje);
 	}
 	
-	
+	public void setPorcentaje(double porcentaje) {
+		this.porcentaje = porcentaje;
+	}
+	private double getPorcentaje() {
+		return(this.porcentaje);
+	}
 
-	private double calculoPromocion() {
-		int total = 0;
-		for (int i = 0; i < atracciones.length; i++) {
-			if(TipoDeAtracciones.S)
-			total += atracciones[i].getCostoVisita();
+	@Override
+	public double reduccionCostoTotal(Double valor) {
+		return calculoPromocion(valor);
+	}
 
-		}
-
-		return total - (total * porcentajeDeDescuento);
+	private double calculoPromocion(Double procentaje) {
+		double total = 0;
+		total += super.getCosto();
+		return total - (total * getPorcentaje());
 	}
 
 }
-//Booleano con un atributo llamado esta en promocion, tipo,
-//Las promociones se agregan a un array de itinerarios 
