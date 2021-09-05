@@ -57,7 +57,7 @@ public abstract class Promocion implements Sugeribles {
 		double tiempoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
 
-			tiempoTotal += atraccion.getCosto();
+			tiempoTotal += atraccion.getTiempo();
 
 		}
 
@@ -65,7 +65,9 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
-	
+	public void setTipoDeAtracciones() {
+		this.tipoDeAtracciones = atracciones.get(0).getTipoDeAtracciones();
+	}
 	@Override
 	public TipoDeAtracciones getTipoDeAtracciones() {
 		return (this.tipoDeAtracciones);
