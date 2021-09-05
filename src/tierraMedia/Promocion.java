@@ -7,35 +7,43 @@ public abstract class Promocion implements Sugeribles {
 	protected String nombre;
 	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
 	private TipoDeAtracciones tipoDeAtracciones;
-	
-	public Promocion(String nombre, Atraccion atraccion) {
+
+	public Promocion(String nombre, List<Atraccion> atracciones) {
 		this.setNombre(nombre);
-		this.setAtraccion(atraccion);
+		this.setAtraccion(atracciones);
+
 	}
+
 	public Promocion() {
 		super();
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public void setAtraccion(Atraccion atraccion) {
-		atracciones.add(atraccion);
+	public void setAtraccion(List<Atraccion> atracciones) {
+		this.atracciones.addAll(atracciones);
+	}
+
+	public String getAtraccion() {
+		String nombre = "";
+		for (Atraccion atraccion : atracciones) {
+			nombre += atraccion.getNombre() + ",";
+		}
+		return (nombre);
 	}
 
 	@Override
 	public int getCosto() {
 		int costoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
-			if (atraccion.getNombre() == this.getNombre()) {
-				costoTotal += atraccion.getCosto();
-			}
+
+			costoTotal += atraccion.getCosto();
 
 		}
 
@@ -48,9 +56,8 @@ public abstract class Promocion implements Sugeribles {
 
 		double tiempoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
-			if (atraccion.getNombre() == this.getNombre()) {
-				tiempoTotal += atraccion.getCosto();
-			}
+
+			tiempoTotal += atraccion.getCosto();
 
 		}
 
