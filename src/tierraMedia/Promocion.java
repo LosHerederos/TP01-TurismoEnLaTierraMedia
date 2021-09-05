@@ -65,6 +65,7 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
+	
 	@Override
 	public TipoDeAtracciones getTipoDeAtracciones() {
 		return (this.tipoDeAtracciones);
