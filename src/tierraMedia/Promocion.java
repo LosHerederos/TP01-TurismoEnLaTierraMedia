@@ -6,12 +6,12 @@ import java.util.List;
 public abstract class Promocion implements Sugeribles {
 	protected String nombre;
 	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
-	private TipoDeAtracciones tipoDeAtracciones;
+	private TipoDeAtracciones tipoDeAtraccion;
 
 	public Promocion(String nombre, List<Atraccion> atracciones) {
 		this.setNombre(nombre);
 		this.setAtraccion(atracciones);
-
+		this.setTipodeAtraccion();
 	}
 
 	public Promocion() {
@@ -65,12 +65,12 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
-	public void setTipoDeAtracciones() {
-		this.tipoDeAtracciones = atracciones.get(0).getTipoDeAtracciones();
+	public void setTipodeAtraccion() {
+		this.tipoDeAtraccion = atracciones.get(0).getTipoDeAtraccion();
 	}
 	@Override
-	public TipoDeAtracciones getTipoDeAtracciones() {
-		return (this.tipoDeAtracciones);
+	public TipoDeAtracciones getTipoDeAtraccion() {
+		return (this.tipoDeAtraccion);
 	}
 
 	abstract double reduccionCostoTotal(Double valor);

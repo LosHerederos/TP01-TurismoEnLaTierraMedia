@@ -34,9 +34,10 @@ public interface Sugeribles {
 	//public void setVisitantes(int visitantes);
     //public String getNombre();
     //public void setNombre(String nombre);
-	abstract TipoDeAtracciones getTipoDeAtracciones();
-	//void setTipoDeAtraccion(TipoDeAtracciones tipoDeAtraccion);	
+	abstract TipoDeAtracciones getTipoDeAtraccion();
+	//abstract void setTipoDeAtraccion(TipoDeAtracciones tipoDeAtraccion);	
 	//TipoDeAtracciones getTipoDeAtracciones();
+	//void setTipodeAtraccion(TipoDeAtracciones tipoDeAtraccion);
     
 }
 

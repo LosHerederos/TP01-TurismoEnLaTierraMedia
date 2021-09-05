@@ -78,7 +78,7 @@ public class Atraccion implements Sugeribles {
 
 	// ¿Cómo valído que tipo de atracción sea de tipo enumerado correcto?
 	@Override
-	public TipoDeAtracciones getTipoDeAtracciones() {
+	public TipoDeAtracciones getTipoDeAtraccion() {
 		return (this.tipoDeAtracciones);
 	}
 	

@@ -6,8 +6,9 @@ public class PromocionPorcentual extends Promocion {
 	private double porcentaje;
 
 	public PromocionPorcentual(String nombre, List<Atraccion> atracciones, double porcentaje) {
-		super.getNombre();
+		super.setNombre(nombre);
 		super.setAtraccion(atracciones);
+		super.setTipodeAtraccion();
 		this.setPorcentaje(porcentaje);
 	}
 	

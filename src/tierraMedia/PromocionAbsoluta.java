@@ -9,6 +9,7 @@ public class PromocionAbsoluta extends Promocion {
 		super();
 		super.setNombre(nombre);
 		super.setAtraccion(atracciones);
+		super.setTipodeAtraccion();
 		this.setDescuento(descuento);
 	}
 
