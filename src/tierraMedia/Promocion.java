@@ -1,11 +1,12 @@
 package tierraMedia;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+//import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Promocion implements Sugeribles {
 	protected String nombre;
-	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
+	private List<Atraccion> atracciones = new ArrayList<Atraccion>();
 	private TipoDeAtracciones tipoDeAtraccion;
 
 	public Promocion(String nombre, List<Atraccion> atracciones) {
