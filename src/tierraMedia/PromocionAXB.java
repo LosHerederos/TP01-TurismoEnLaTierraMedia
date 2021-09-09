@@ -31,7 +31,7 @@ public class PromocionAXB extends Promocion {
 
 	@Override
 	public String reduccionCostoTotal() {
-		return ("Comprando "+ getAtraccionesPagas() + super.getAtraccion() + "gratis");
+		return (super.getNombre()+ ":" + "Comprando "+ getAtraccionesPagas() + super.getAtraccion() + "gratis");
 	}
 
 }

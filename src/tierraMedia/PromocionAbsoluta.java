@@ -24,6 +24,6 @@ public class PromocionAbsoluta extends Promocion {
 
 	@Override
 	protected String reduccionCostoTotal() {
-		return (super.getAtraccion() + " " + "a monedas" + this.getDescuento() );
+		return (super.getNombre()+ ":" + super.getAtraccion() + " " + "a monedas" + this.getDescuento() );
 	}
 }

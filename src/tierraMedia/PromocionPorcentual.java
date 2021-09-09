@@ -22,7 +22,7 @@ public class PromocionPorcentual extends Promocion {
 
 	@Override
 	public String reduccionCostoTotal() {
-		return ("Comprando" +" " + super.getAtraccion()
+		return (super.getNombre()+ ":" + "Comprando" +" " + super.getAtraccion()
 				+ " " +( " " + this.getPorcentaje() * 100  + " % de descuento"));
 	}
 
