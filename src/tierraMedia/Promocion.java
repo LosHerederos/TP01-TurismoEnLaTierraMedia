@@ -75,26 +75,5 @@ public abstract class Promocion implements Sugeribles {
 		return (this.tipoDeAtraccion);
 	}
 
-	public boolean cupoCompleto() {
-		
-			boolean cupoCompleto = false;
-			for (Atraccion atraccion : atracciones) {
-				//try {
-					cupoCompleto = atraccion.esCupoCompleto();
-			//	}
-			//	catch (Exception e) {
-					// Block of code to handle errors
-				//}
-				
-			}
-			//return (cupoCompleto);
-		
-
-		
-		return (cupoCompleto);
-		
-
-	}
-
 	abstract String reduccionCostoTotal();
 }
