@@ -1,12 +1,12 @@
 package tierraMedia;
 
 import java.util.ArrayList;
-//import java.util.LinkedList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Promocion implements Sugeribles {
 	protected String nombre;
-	private List<Atraccion> atracciones = new ArrayList<Atraccion>();
+	private List<Atraccion> atracciones = new ArrayList<>();
 	private TipoDeAtracciones tipoDeAtraccion;
 
 	public Promocion(String nombre, List<Atraccion> atracciones) {
@@ -16,7 +16,9 @@ public abstract class Promocion implements Sugeribles {
 	}
 
 	public Promocion() {
-		super();
+		this.setNombre(null);
+		this.setAtraccion(null);
+		this.setTipodeAtraccion();
 	}
 
 	public String getNombre() {
@@ -31,12 +33,8 @@ public abstract class Promocion implements Sugeribles {
 		this.atracciones.addAll(atracciones);
 	}
 
-	public String getAtraccion() {
-		String nombre = "";
-		for (Atraccion atraccion : atracciones) {
-			nombre += atraccion.getNombre() + ",";
-		}
-		return (nombre);
+	public List<Atraccion> getAtraccion() {
+		return (atracciones);
 	}
 
 	@Override
