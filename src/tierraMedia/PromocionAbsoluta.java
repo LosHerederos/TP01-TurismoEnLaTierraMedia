@@ -23,7 +23,7 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	@Override
-	protected double reduccionCostoTotal(Double valor) {
-		return (getDescuento());
+	protected String reduccionCostoTotal() {
+		return (super.getAtraccion() + " " + "a monedas" + this.getDescuento() );
 	}
 }

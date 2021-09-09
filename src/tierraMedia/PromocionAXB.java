@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromocionAXB extends Promocion {
-	List<Atraccion> AtraccionesPagas = new ArrayList<Atraccion>();
+	List<Atraccion> atraccionesPagas = new ArrayList<Atraccion>();
 
 	public PromocionAXB(String nombre, List<Atraccion> atracciones) {
 		super();
@@ -14,19 +14,24 @@ public class PromocionAXB extends Promocion {
 		
 	}
 	
-	public List<Atraccion> getAtraccionesPagas() {
-		return AtraccionesPagas;
+	public String getAtraccionesPagas() {
+		String nombreAtraccion ="";
+		for(Atraccion atracciones : atraccionesPagas) {
+			nombreAtraccion = atracciones.getNombre();
+		}
+		return(nombreAtraccion);
+			
 	}
 
 
 	public void setAtraccionesPagas(Atraccion atraccionesPagas) {
-		AtraccionesPagas.add(atraccionesPagas);
+		this.atraccionesPagas.add(atraccionesPagas);
 	}
 
 
 	@Override
-	public double reduccionCostoTotal(Double valor) {
-		return (0);
+	public String reduccionCostoTotal() {
+		return ("Comprando "+ getAtraccionesPagas() + super.getAtraccion() + "gratis");
 	}
 
 }

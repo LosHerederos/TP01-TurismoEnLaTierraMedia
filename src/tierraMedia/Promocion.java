@@ -69,10 +69,32 @@ public abstract class Promocion implements Sugeribles {
 	public void setTipodeAtraccion() {
 		this.tipoDeAtraccion = atracciones.get(0).getTipoDeAtraccion();
 	}
+
 	@Override
 	public TipoDeAtracciones getTipoDeAtraccion() {
 		return (this.tipoDeAtraccion);
 	}
 
-	abstract double reduccionCostoTotal(Double valor);
+	public boolean cupoCompleto() {
+		
+			boolean cupoCompleto = false;
+			for (Atraccion atraccion : atracciones) {
+				//try {
+					cupoCompleto = atraccion.esCupoCompleto();
+			//	}
+			//	catch (Exception e) {
+					// Block of code to handle errors
+				//}
+				
+			}
+			//return (cupoCompleto);
+		
+
+		
+		return (cupoCompleto);
+		
+
+	}
+
+	abstract String reduccionCostoTotal();
 }
