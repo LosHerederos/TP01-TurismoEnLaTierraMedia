@@ -33,11 +33,19 @@ public class Itinerario {
 	public void setPromociones(List<Promocion> promociones) {
 		this.promociones = promociones;
 	}
+
+	public void agregarPromocion(Promocion promo){
+		promociones.add(promo);
+		for (Atraccion atraccion : promo.getAtraccion()) {
+			atracciones.add(atraccion);
+			atraccion.setVisitantes(atraccion.getVisitantes() + 1);
+		}
+	}
 	
 	public double horasNecesarias() {
 		double horas = 0;
 		for (Promocion promo : promociones) {
-		//	horas += promo.getTiempo;
+			horas += promo.getTiempo();
 		}
 		return horas;
 	}
@@ -45,13 +53,9 @@ public class Itinerario {
 	public int costoTotal() {
 		int total = 0;
 		for (Promocion promo : promociones) {
-		//	total+=promo.getCosto();
+			total+=promo.getCosto();
 		}
 		return total;
-	}
-	
-	private boolean atracionIncluida(Atraccion atraccion) {
-		return atracciones.contains(atraccion);
 	}
 
 	@Override

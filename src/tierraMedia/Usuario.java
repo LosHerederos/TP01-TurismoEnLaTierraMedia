@@ -17,7 +17,7 @@ public class Usuario {
 		this.tipoFavorito = null;
 	}
 	
-	public Usuario(String nombre, int presupuesto, Itinerario itinerario, double tiempoDisponible,
+	public Usuario(String nombre, int presupuesto, double tiempoDisponible,
 			TipoDeAtracciones tipoFavorito) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
