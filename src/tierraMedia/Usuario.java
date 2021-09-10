@@ -1,5 +1,6 @@
 package tierraMedia;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
@@ -20,9 +21,9 @@ public class Usuario {
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible,
 			TipoDeAtracciones tipoFavorito) {
 		this.nombre = nombre;
-		this.presupuesto = presupuesto;
+		setPresupuesto(presupuesto);
 		this.itinerario = new Itinerario();
-		this.tiempoDisponible = tiempoDisponible;
+		setTiempoDisponible(tiempoDisponible);
 		this.tipoFavorito = tipoFavorito;
 	}
 
@@ -39,6 +40,10 @@ public class Usuario {
 	}
 
 	public void setPresupuesto(int presupuesto) {
+		if (presupuesto <= 0) {
+			Error presupuestonegativo = new Error("El presupuesto tiene que ser mayor a 0 ");
+			throw presupuestonegativo;
+		}
 		this.presupuesto = presupuesto;
 	}
 
@@ -55,6 +60,10 @@ public class Usuario {
 	}
 
 	public void setTiempoDisponible(double tiempoDisponible) {
+		if (tiempoDisponible < 0 ) {
+			Error tiemponegativo = new Error("El tiempo disponible tiene que ser mayor a 0 ");
+			throw tiemponegativo;
+		}
 		this.tiempoDisponible = tiempoDisponible;
 	}
 
@@ -67,7 +76,22 @@ public class Usuario {
 	}
 	
 	public void aceptarSugerencia(Promocion promo) {
-		this.itinerario.getPromociones().add(promo);
+		this.itinerario.agregarPromocion(promo);
+		this.presupuesto -= promo.getCosto();
+		this.tiempoDisponible -= promo.getTiempo();
+	}
+
+	public boolean poseeRecursos(){
+		return this.tiempoDisponible > 0 && this.presupuesto > 0;
+	}
+
+	public Boolean poseeAtraccion(List<Atraccion> atracciones){
+		for (Atraccion atraccion : atracciones) {
+			if(this.itinerario.getAtracciones().contains(atraccion)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
