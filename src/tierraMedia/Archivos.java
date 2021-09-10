@@ -10,20 +10,20 @@ import java.util.Scanner;
 
 public class Archivos {
 
-	final static String separador = ", ";
-	final static String separadorDeArreglo = " : ";
-	static Scanner sc;
+	final static String SEPARADOR_DE_DATOS = ", ";
+	final static String SEPARADOR_DE_ARREGLO = " : ";
 	static String rutaDeArchivos = "archivos/";
 	static String archivoDeUsuarios = "usuarios.in";
 	static String archivoDeAtracciones = "atracciones.in";
 	static String archivoDePromociones = "promociones.in";
+	static String prefijoDeArchivoDeSalida = "%s.out";
 
 	public static Usuario[] cargarUsuarios() {
 		/*
 		 * 0: Nombre : String
 		 * 1: Presupuesto : int
 		 * 2: Tiempo : double
-		 * 3: Tipo de Atracción : enum
+		 * 3: Tipo de Atracciï¿½n : enum
 		 */
 		String nombre;
 		int presupuesto;
@@ -40,7 +40,7 @@ public class Archivos {
 			tiempoDisponible = Double.parseDouble(datosDeUsuarios[i][2]);
 			tipoFavorito = TipoDeAtracciones.valueOf(datosDeUsuarios[i][3]);
 			
-			usuarios[i] = new Usuario(nombre, presupuesto, null, tiempoDisponible, tipoFavorito);
+			usuarios[i] = new Usuario(nombre, presupuesto, tiempoDisponible, tipoFavorito);
 		}
 		
 		return usuarios;
@@ -52,7 +52,7 @@ public class Archivos {
 		 * 1: Costo : int
 		 * 2: Tiempo : double
 		 * 3: Cupo de Personas : int
-		 * 4: Tipo de Atracción : enum
+		 * 4: Tipo de Atracciï¿½n : enum
 		 */
 		String nombre;
 		int costoVisita;
@@ -79,7 +79,7 @@ public class Archivos {
 
 	public static Promocion[] cargarPromociones(Atraccion[] todasLasAtracciones) {
 		/*"
-		 * 0: Tipo de Promoción : String
+		 * 0: Tipo de Promociï¿½n : String
 		 * 1: Nombre : String
 		 * 2: Atracciones : Atraccion[]
 		 * 3: Otros:  
@@ -98,29 +98,34 @@ public class Archivos {
 			String[] nombresDeAtracciones = separarArregloEnString(datosDePromociones[i][2]);
 			atracciones = buscarAtracciones(todasLasAtracciones, nombresDeAtracciones);
 			
-			if (tipoDePromocion == "PromocionPorcentual") {
-				// double porcentajeDeDescuento = datosDePromociones[i][3];
-				// promociones[i] = new PromocionPorcentual(nombre, atracciones);
-			} else if (tipoDePromocion == "PromocionAbsoluta") {
-				// double costoTotal = datosDePromociones[i][3];
-				//promociones[i] = new PromocionAbsoluta(nombre, atracciones);
-			} else if (tipoDePromocion == "PromocionAXB") {
-				// Atracciones otrasAtracciones = new Atracciones[n]
-				//promociones[i] = new PromocionAbsoluta(nombre, atracciones);
+			if (tipoDePromocion.equals("PromocionPorcentual")) {
+				double porcentajeDeDescuento = Double.parseDouble(datosDePromociones[i][3]);
+				promociones[i] = new PromocionPorcentual(nombre, Arrays.asList(atracciones), porcentajeDeDescuento);
+			} else if (tipoDePromocion.equals("PromocionAbsoluta")) {
+				int costoTotal =  Integer.parseInt(datosDePromociones[i][3]);
+				promociones[i] = new PromocionAbsoluta(nombre, Arrays.asList(atracciones), costoTotal);
+			} else if (tipoDePromocion.equals("PromocionAXB")) {
+				//Atracciones otrasAtracciones = new Atracciones[n]
+				promociones[i] = new PromocionAXB(nombre, Arrays.asList(atracciones));
 			}
 		}
 		
 		return promociones;
 	}
 	
-	public static void generarArchivoDeSalida(Object obj, String nombreDeArchivo) throws IOException {
-		PrintWriter salida = new PrintWriter(new FileWriter(rutaDeArchivos + "output/" + nombreDeArchivo));
-		salida.println(obj);
-		salida.close();
+	public static void generarArchivosDeSalida(Usuario[] usuarios) throws IOException {
+		PrintWriter salida;
+		
+		for (Usuario usuario : usuarios) {
+			salida = new PrintWriter(new FileWriter(rutaDeArchivos + "output/" + String.format(prefijoDeArchivoDeSalida, usuario.getNombre())));
+			salida.println(usuario);
+			salida.close();
+		}
 	}
 	
 	private static String[] leerArchivo(String rutaDeArchivo) {
 		File archivoDeEntrada = new File(rutaDeArchivo);
+		Scanner sc;
 		String archivo = "";
 		try {
 			sc = new Scanner(archivoDeEntrada);
@@ -140,7 +145,7 @@ public class Archivos {
 	private static String[][] separarDatos(String[] arregloDeDatosUnidos) {
 		String[][] arregloDeDatosSeparados = new String[arregloDeDatosUnidos.length][];
 		for (int i = 0; i < arregloDeDatosUnidos.length; i++) {
-			arregloDeDatosSeparados[i] = arregloDeDatosUnidos[i].split(separador);
+			arregloDeDatosSeparados[i] = arregloDeDatosUnidos[i].split(SEPARADOR_DE_DATOS);
 		}
 		
 		return arregloDeDatosSeparados;
@@ -149,7 +154,7 @@ public class Archivos {
 	private static String[] separarArregloEnString(String arregloEnString) {
 		String[] arreglo;
 		arregloEnString = arregloEnString.replaceAll("[()]", "");
-		arreglo = arregloEnString.split(separadorDeArreglo);
+		arreglo = arregloEnString.split(SEPARADOR_DE_ARREGLO);
 		
 		return arreglo;
 	}

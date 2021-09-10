@@ -7,10 +7,10 @@ public class PromocionAXB extends Promocion {
 	List<Atraccion> atraccionesPagas = new ArrayList<Atraccion>();
 
 	public PromocionAXB(String nombre, List<Atraccion> atracciones) {
-		super();
-		super.setNombre(nombre);
-		super.setAtraccion(atracciones);
-		super.setTipodeAtraccion();
+		super(nombre, atracciones);
+//		super.setNombre(nombre);
+//		super.setAtraccion(atracciones);
+//		super.setTipodeAtraccion();
 		
 	}
 	

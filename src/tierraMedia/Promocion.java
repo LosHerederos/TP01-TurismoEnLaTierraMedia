@@ -17,7 +17,7 @@ public abstract class Promocion implements Sugeribles {
 
 	public Promocion() {
 		this.setNombre(null);
-		this.setAtraccion(null);
+//		this.setAtraccion(null);
 		this.setTipodeAtraccion();
 	}
 
@@ -74,4 +74,12 @@ public abstract class Promocion implements Sugeribles {
 	}
 
 	abstract String reduccionCostoTotal();
+	
+	@Override
+	public String toString() {
+		return this.nombre
+				+ "\t\t\t" + this.tipoDeAtraccion
+				+ "\t" + this.getCosto()
+				+ "\t" + this.getTiempo();
+	}
 }

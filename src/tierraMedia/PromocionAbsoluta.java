@@ -6,10 +6,10 @@ public class PromocionAbsoluta extends Promocion {
 	private int descuento;
 
 	public PromocionAbsoluta(String nombre, List<Atraccion> atracciones, int descuento) {
-		super();
-		super.setNombre(nombre);
-		super.setAtraccion(atracciones);
-		super.setTipodeAtraccion();
+		super(nombre, atracciones);
+//		super.setNombre(nombre);
+//		super.setAtraccion(atracciones);
+//		super.setTipodeAtraccion();
 		this.setDescuento(descuento);
 	}
 

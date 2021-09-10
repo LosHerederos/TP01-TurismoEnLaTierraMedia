@@ -25,7 +25,7 @@ public class Atraccion implements Sugeribles {
 
 	public void agregarVisitante() {
 		if (this.visitantes >= this.cupoPersonas) {
-			Error cupoCompleto = new Error("el cupo de la atracción " + this.nombre + " esta completo");
+			Error cupoCompleto = new Error("el cupo de la atracciï¿½n " + this.nombre + " esta completo");
 			throw cupoCompleto;
 		}
 
@@ -40,7 +40,7 @@ public class Atraccion implements Sugeribles {
 
 	public void setCostoVisita(int costoVisita) {
 		if (costoVisita < 0) {
-			Error costoNegativo = new Error("El costo de la atracción " + this.nombre + " no puede ser negativo");
+			Error costoNegativo = new Error("El costo de la atracciï¿½n " + this.nombre + " no puede ser negativo");
 			throw costoNegativo;
 		}
 
@@ -55,7 +55,7 @@ public class Atraccion implements Sugeribles {
 	public void setTiempoParaRealizarla(double tiempoParaRealizarla) {
 		if (tiempoParaRealizarla <= 0) {
 			Error tiempoInvalido = new Error(
-					"El tiempo que insume visitar la atracción " + this.nombre + " no puede ser cero ni negativo");
+					"El tiempo que insume visitar la atracciï¿½n " + this.nombre + " no puede ser cero ni negativo");
 			throw tiempoInvalido;
 		}
 
@@ -69,14 +69,14 @@ public class Atraccion implements Sugeribles {
 	public void setCupoPersonas(int cupoPersonas) {
 		if (cupoPersonas <= 0) {
 			Error cupoPersonasInvalido = new Error(
-					"El cupo de personas de la atracción " + this.nombre + " no puede ser cero ni negativo");
+					"El cupo de personas de la atracciï¿½n " + this.nombre + " no puede ser cero ni negativo");
 			throw cupoPersonasInvalido;
 		}
 
 		this.cupoPersonas = cupoPersonas;
 	}
 
-	// ¿Cómo valído que tipo de atracción sea de tipo enumerado correcto?
+	// ï¿½Cï¿½mo valï¿½do que tipo de atracciï¿½n sea de tipo enumerado correcto?
 	@Override
 	public TipoDeAtracciones getTipoDeAtraccion() {
 		return (this.tipoDeAtracciones);
@@ -93,7 +93,7 @@ public class Atraccion implements Sugeribles {
 	public void setVisitantes(int visitantes) {
 		if (visitantes < 0) {
 			Error visitantesNegativo = new Error(
-					"El número de visitantes de la atracción " + this.nombre + " no puede ser negativo");
+					"El nï¿½mero de visitantes de la atracciï¿½n " + this.nombre + " no puede ser negativo");
 			throw visitantesNegativo;
 		}
 
@@ -109,6 +109,12 @@ public class Atraccion implements Sugeribles {
 	}
 
 	
-
+	@Override
+	public String toString() {
+		return this.nombre
+				+ "\t\t\t" + this.tipoDeAtracciones
+				+ "\t\t" + this.costoVisita
+				+ "\t" + this.tiempoParaRealizarla;
+	}
 
 }
