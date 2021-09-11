@@ -6,8 +6,9 @@ import java.util.List;
 public class PromocionAXB extends Promocion {
 	List<Atraccion> atraccionesPagas = new ArrayList<Atraccion>();
 
-	public PromocionAXB(String nombre, List<Atraccion> atracciones) {
+	public PromocionAXB(String nombre, List<Atraccion> atracciones, List<Atraccion> atraccionesPagas) {
 		super(nombre, atracciones);
+		this.setAtraccionesPagas(atraccionesPagas);
 //		super.setNombre(nombre);
 //		super.setAtraccion(atracciones);
 //		super.setTipodeAtraccion();
@@ -24,8 +25,8 @@ public class PromocionAXB extends Promocion {
 	}
 
 
-	public void setAtraccionesPagas(Atraccion atraccionesPagas) {
-		this.atraccionesPagas.add(atraccionesPagas);
+	public void setAtraccionesPagas(List<Atraccion> atraccionesPagas) {
+		this.atraccionesPagas.addAll(atraccionesPagas);
 	}
 
 
