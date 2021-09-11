@@ -106,8 +106,9 @@ public class Archivos {
 				int costoTotal =  Integer.parseInt(datosDePromociones[i][3]);
 				promociones[i] = new PromocionAbsoluta(nombre, Arrays.asList(atracciones), costoTotal);
 			} else if (tipoDePromocion.equals("PromocionAXB")) {
-				//Atracciones otrasAtracciones = new Atracciones[n]
-				promociones[i] = new PromocionAXB(nombre, Arrays.asList(atracciones));
+				String[] nombresDeOtrasAtracciones = separarArregloEnString(datosDePromociones[i][3]);
+				Atraccion[] otrasAtracciones = buscarAtracciones(todasLasAtracciones, nombresDeOtrasAtracciones);
+				promociones[i] = new PromocionAXB(nombre, Arrays.asList(atracciones), Arrays.asList(otrasAtracciones));
 			}
 		}
 		
