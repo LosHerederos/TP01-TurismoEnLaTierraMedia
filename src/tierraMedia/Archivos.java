@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Archivos {
@@ -18,7 +19,7 @@ public class Archivos {
 	static String archivoDePromociones = "promociones.in";
 	static String prefijoDeArchivoDeSalida = "%s.out";
 
-	public static Usuario[] cargarUsuarios() {
+	public static List<Usuario> cargarUsuarios() {
 		/*
 		 * 0: Nombre : String
 		 * 1: Presupuesto : int
@@ -43,10 +44,10 @@ public class Archivos {
 			usuarios[i] = new Usuario(nombre, presupuesto, tiempoDisponible, tipoFavorito);
 		}
 		
-		return usuarios;
+		return Arrays.asList(usuarios);
 	}
 
-	public static Atraccion[] cargarAtracciones() {
+	public static List<Atraccion> cargarAtracciones() {
 		/* 
 		 * 0: Nombre : String
 		 * 1: Costo : int
@@ -74,10 +75,10 @@ public class Archivos {
 			atracciones[i] = new Atraccion(costoVisita, tiempoParaRealizarla, cupoPersonas, tipoDeAtraccion, nombre);
 		}
 		
-		return atracciones;
+		return Arrays.asList(atracciones);
 	}
 
-	public static Promocion[] cargarPromociones(Atraccion[] todasLasAtracciones) {
+	public static List<Promocion> cargarPromociones(List<Atraccion> todasLasAtracciones) {
 		/*"
 		 * 0: Tipo de Promoci�n : String
 		 * 1: Nombre : String
@@ -110,7 +111,7 @@ public class Archivos {
 			}
 		}
 		
-		return promociones;
+		return Arrays.asList(promociones);
 	}
 	
 	public static void generarArchivosDeSalida(Usuario[] usuarios) throws IOException {
@@ -159,7 +160,7 @@ public class Archivos {
 		return arreglo;
 	}
 	
-	private static Atraccion[] buscarAtracciones(Atraccion[] todasLasAtracciones, String[] nombresDeAtracciones) {
+	private static Atraccion[] buscarAtracciones(List<Atraccion> todasLasAtracciones, String[] nombresDeAtracciones) {
 		Atraccion[] atracciones = new Atraccion[nombresDeAtracciones.length];
 		int encontradas = 0;
 		int i = 0;
