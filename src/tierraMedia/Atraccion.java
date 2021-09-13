@@ -1,5 +1,7 @@
 package tierraMedia;
 
+import java.util.Objects;
+
 public class Atraccion implements Sugeribles {
 
 	private int costoVisita;
@@ -107,8 +109,28 @@ public class Atraccion implements Sugeribles {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	
+		
+	@Override
+	public int hashCode() {
+		return Objects.hash(costoVisita, cupoPersonas, nombre, tiempoParaRealizarla, tipoDeAtracciones, visitantes);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atraccion other = (Atraccion) obj;
+		return costoVisita == other.costoVisita && cupoPersonas == other.cupoPersonas
+				&& Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(tiempoParaRealizarla) == Double.doubleToLongBits(other.tiempoParaRealizarla)
+				&& tipoDeAtracciones == other.tipoDeAtracciones && visitantes == other.visitantes;
+	}
+
 	@Override
 	public String toString() {
 		return this.nombre

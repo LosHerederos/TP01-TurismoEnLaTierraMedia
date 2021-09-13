@@ -4,34 +4,80 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ArchivosTest {
-
-	@Test
-	public void test() {
-		//fail("Not yet implemented");
-//		List<Usuario> usuarios = Archivos.cargarUsuarios();
-//		
-//		for (Usuario usuario : usuarios) {
-//			System.out.println(usuario);
-//		}
+	
+	@Before
+	public void setup() {
 		
+		Archivos.rutaDeArchivos = "archivos/test/";
+		Archivos.archivoDeUsuarios = "usuariosTest.in";
+		Archivos.archivoDeAtracciones = "atraccionesTest.in";
+		Archivos.archivoDePromociones = "promocionesTest.in";
+		Archivos.prefijoDeArchivoDeSalida = "%sTest.out";
 		
-//		List<Atraccion> atracciones = Archivos.cargarAtracciones();
-//		for (Atraccion atraccion : atracciones) {
-//			System.out.println(atraccion);
-//		}
-		
-//		List<Promocion> promociones = Archivos.cargarPromociones(atracciones);
-//		for (Promocion promocion : promociones) {
-//			System.out.println(promocion);
-//			List<Atraccion> susAtracciones = promocion.getAtraccion();
-//			for (Atraccion atraccion : susAtracciones) {
-//				System.out.println(atraccion);
-//			}
-//			
-//		}
 	}
+	
+	@Test
+	public void cargarUsuariosTest() {
 
+		List<Usuario> usuarios = Archivos.cargarUsuarios();
+		
+		assertEquals("Pedro", usuarios.get(0).getNombre());
+		assertEquals(75, usuarios.get(0).getPresupuesto());
+		assertEquals(6.0, usuarios.get(0).getTiempoDisponible(), 0.001);
+		assertEquals(TipoDeAtracciones.AVENTURA, usuarios.get(0).getTipoFavorito());
+		
+		assertEquals("Gabriel", usuarios.get(1).getNombre());
+		assertEquals(120, usuarios.get(1).getPresupuesto());
+		assertEquals(3.6, usuarios.get(1).getTiempoDisponible(), 0.001);
+		assertEquals(TipoDeAtracciones.PAISAJE, usuarios.get(1).getTipoFavorito());
+		
+	}
+	
+	@Test
+	public void cargarAtraccionesTest() {
+		
+		List<Atraccion> atracciones = Archivos.cargarAtracciones();
+		
+		assertEquals("Moria", atracciones.get(0).getNombre());
+		assertEquals(10, atracciones.get(0).getCosto());
+		assertEquals(2.0, atracciones.get(0).getTiempo(), 0.001);
+		assertEquals(6, atracciones.get(0).getCupoPersonas());
+		assertEquals(TipoDeAtracciones.AVENTURA, atracciones.get(0).getTipoDeAtraccion());
+		
+		assertEquals("Minas Tirith", atracciones.get(1).getNombre());
+		assertEquals(5, atracciones.get(1).getCosto());
+		assertEquals(2.5, atracciones.get(1).getTiempo(), 0.001);
+		assertEquals(25, atracciones.get(1).getCupoPersonas());
+		assertEquals(TipoDeAtracciones.AVENTURA, atracciones.get(1).getTipoDeAtraccion());
+		
+		assertEquals("La Comarca", atracciones.get(2).getNombre());
+		assertEquals(3, atracciones.get(2).getCosto());
+		assertEquals(6.5, atracciones.get(2).getTiempo(), 0.001);
+		assertEquals(150, atracciones.get(2).getCupoPersonas());
+		assertEquals(TipoDeAtracciones.DEGUSTACION, atracciones.get(2).getTipoDeAtraccion());
+			
+	}
+	
+	
+	@Test
+	public void cargarPromocionesTest() {
+		
+		List<Atraccion> atracciones = Archivos.cargarAtracciones();
+		List<Promocion> promociones = Archivos.cargarPromociones(atracciones);
+		
+		assertEquals("PromocionPorcentual", promociones.get(0).getClass().getSimpleName());
+		assertSame(atracciones.get(0), promociones.get(0).getAtraccion().get(0));
+		assertSame(atracciones.get(1), promociones.get(0).getAtraccion().get(1));
+	}
+	
+	
+	@Test
+	public void generarArchivosDeSalida() {
+		
+	}
+	
 }
