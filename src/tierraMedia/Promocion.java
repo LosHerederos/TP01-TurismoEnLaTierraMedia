@@ -1,7 +1,7 @@
 package tierraMedia;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class Promocion implements Sugeribles {
@@ -64,6 +64,27 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
+	@Override
+	public void agregarVisitante() {
+		if (!this.esCupoCompleto()) {
+			for (Atraccion atraccion : atracciones) {
+				atraccion.agregarVisitante();
+			}
+		}
+	}
+
+	@Override
+	public boolean esCupoCompleto() {
+		boolean cupoCompleto = false;
+		Iterator<Atraccion> atraccion = atracciones.listIterator();
+		while (atraccion.hasNext() && !atraccion.next().esCupoCompleto()) {
+			 cupoCompleto = atraccion.next().esCupoCompleto();
+			 
+		}
+		return cupoCompleto;
+
+	}
+
 	public void setTipodeAtraccion() {
 		this.tipoDeAtraccion = atracciones.get(0).getTipoDeAtraccion();
 	}
@@ -74,12 +95,9 @@ public abstract class Promocion implements Sugeribles {
 	}
 
 	abstract String reduccionCostoTotal();
-	
+
 	@Override
 	public String toString() {
-		return this.nombre
-				+ "\t\t\t" + this.tipoDeAtraccion
-				+ "\t" + this.getCosto()
-				+ "\t" + this.getTiempo();
+		return this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t" + this.getCosto() + "\t" + this.getTiempo();
 	}
 }

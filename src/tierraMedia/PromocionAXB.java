@@ -9,30 +9,25 @@ public class PromocionAXB extends Promocion {
 	public PromocionAXB(String nombre, List<Atraccion> atracciones, List<Atraccion> atraccionesPagas) {
 		super(nombre, atracciones);
 		this.setAtraccionesPagas(atraccionesPagas);
-//		super.setNombre(nombre);
-//		super.setAtraccion(atracciones);
-//		super.setTipodeAtraccion();
-		
-	}
-	
-	public String getAtraccionesPagas() {
-		String nombreAtraccion ="";
-		for(Atraccion atracciones : atraccionesPagas) {
-			nombreAtraccion = atracciones.getNombre();
-		}
-		return(nombreAtraccion);
-			
+
 	}
 
+	public String getAtraccionesPagas() {
+		String nombreAtraccion = "";
+		for (Atraccion atracciones : atraccionesPagas) {
+			nombreAtraccion = atracciones.getNombre();
+		}
+		return (nombreAtraccion);
+
+	}
 
 	public void setAtraccionesPagas(List<Atraccion> atraccionesPagas) {
 		this.atraccionesPagas.addAll(atraccionesPagas);
 	}
 
-
 	@Override
 	public String reduccionCostoTotal() {
-		return (super.getNombre()+ ":" + "Comprando "+ getAtraccionesPagas() + super.getAtraccion() + "gratis");
+		return (super.getNombre() + ":" + "Comprando " + getAtraccionesPagas() + super.getAtraccion() + "gratis");
 	}
 
 }
