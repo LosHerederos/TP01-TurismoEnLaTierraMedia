@@ -78,8 +78,8 @@ public abstract class Promocion implements Sugeribles {
 		boolean cupoCompleto = false;
 		Iterator<Atraccion> atraccion = atracciones.listIterator();
 		while (atraccion.hasNext() && !atraccion.next().esCupoCompleto()) {
-			 cupoCompleto = atraccion.next().esCupoCompleto();
-			 
+			cupoCompleto = atraccion.next().esCupoCompleto();
+
 		}
 		return cupoCompleto;
 
