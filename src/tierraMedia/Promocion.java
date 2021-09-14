@@ -8,7 +8,6 @@ public abstract class Promocion implements Sugeribles {
 	protected String nombre;
 	private List<Atraccion> atracciones = new ArrayList<>();
 	private TipoDeAtracciones tipoDeAtraccion;
-	private Exception cupo = new Exception("Cupo completo, esta promocion no se puede ofrecer en este momento");
 
 	public Promocion(String nombre, List<Atraccion> atracciones) {
 		this.setNombre(nombre);
