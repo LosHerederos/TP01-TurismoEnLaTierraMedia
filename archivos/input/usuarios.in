@@ -4,7 +4,7 @@ Gandalf, 100, 5.0, PAISAJE
 Sam, 36, 8.0, DEGUSTACION
 Galadriel, 120, 2.0, PAISAJE
 Gabriel, 150, 6.0, AVENTURA
-Juan,80, 7.0, AVENTURA
+Juan, 80, 7.0, AVENTURA
 Pedro, 75, 6.0, AVENTURA
 Javier, 120, 3.0, PAISAJE
 Lucila, 90, 5.0, PAISAJE
@@ -21,5 +21,5 @@ Alan, 75, 5.0, PAISAJE
 Clara, 100, 7.0, DEGUSTACION
 Francisco, 250, 2.0, AVENTURA
 Joquin, 180, 5.0, PAISAJE
-Gabriela 130, 4.5, AVENTURA
-Fernando 25, 8.0, AVENTURA
+Gabriela, 130, 4.5, AVENTURA
+Fernando, 25, 8.0, AVENTURA

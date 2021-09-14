@@ -1,6 +1,4 @@
 package tierraMedia;
-
-import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
@@ -40,7 +38,7 @@ public class Usuario {
 	}
 
 	public void setPresupuesto(int presupuesto) {
-		if (presupuesto <= 0) {
+		if (presupuesto < 0) {
 			Error presupuestonegativo = new Error("El presupuesto tiene que ser mayor a 0 ");
 			throw presupuestonegativo;
 		}
@@ -75,23 +73,18 @@ public class Usuario {
 		this.tipoFavorito = tipoFavorito;
 	}
 	
-	public void aceptarSugerencia(Promocion promo) {
-		this.itinerario.agregarPromocion(promo);
-		this.presupuesto -= promo.getCosto();
-		this.tiempoDisponible -= promo.getTiempo();
+	public void aceptarSugerencia(Sugeribles aceptada) {
+		this.itinerario.agregarSugerencia(aceptada);
+		setPresupuesto(this.presupuesto - aceptada.getCosto());
+		setTiempoDisponible(this.tiempoDisponible - aceptada.getTiempo());
 	}
 
-	public boolean poseeRecursos(){
-		return this.tiempoDisponible > 0 && this.presupuesto > 0;
+	public boolean poseeRecursosSuficientes(int precio, double tiempo){
+		return this.tiempoDisponible >= tiempo && this.presupuesto >= precio;
 	}
 
-	public Boolean poseeAtraccion(List<Atraccion> atracciones){
-		for (Atraccion atraccion : atracciones) {
-			if(this.itinerario.getAtracciones().contains(atraccion)) {
-				return false;
-			}
-		}
-		return true;
+	public Boolean estaEnElItinerario(Sugeribles sugerencia){
+		return this.itinerario.getAtracciones().contains(sugerencia) || this.itinerario.getPromociones().contains(sugerencia);
 	}
 
 	@Override

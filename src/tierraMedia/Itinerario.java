@@ -34,12 +34,18 @@ public class Itinerario {
 		this.promociones = promociones;
 	}
 
-	public void agregarPromocion(Promocion promo){
-		promociones.add(promo);
-		for (Atraccion atraccion : promo.getAtraccion()) {
-			atracciones.add(atraccion);
-			atraccion.setVisitantes(atraccion.getVisitantes() + 1);
+	public void agregarSugerencia(Sugeribles sugerencia){
+		if (sugerencia.getClass().equals(Atraccion.class)) {
+			this.atracciones.add((Atraccion) sugerencia);
+		} else {
+			agregarPromocion((Promocion) sugerencia);
 		}
+		sugerencia.agregarVisitante();
+	}
+	
+	private void agregarPromocion(Promocion promo) {
+		this.promociones.add(promo);
+		this.atracciones.addAll(promo.getAtraccion());
 	}
 	
 	public double horasNecesarias() {
@@ -60,7 +66,7 @@ public class Itinerario {
 
 	@Override
 	public String toString() {
-		return "Itinerario [atracciones=" + atracciones + ", promociones=" + promociones + "]";
+		return "Itinerario [atracciones=" + atracciones.toString() + ", promociones=" + promociones.toString() + "]";
 	}
 	
 	
