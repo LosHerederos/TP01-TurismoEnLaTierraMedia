@@ -39,19 +39,21 @@ public class PromocionAXB extends Promocion {
 		tiempoTotal += super.getTiempo();
 		return (tiempoTotal);
 	}
+
 	@Override
 	public void agregarVisitante() {
-		if (!this.esCupoCompleto()) {
+		if (!this.esCupoCompleto() && !super.esCupoCompleto()) {
+			super.agregarVisitante();
 			for (Atraccion atraccion : atraccionesPagas) {
 				atraccion.agregarVisitante();
 			}
 
 		}
 	}
+
 	@Override
 	public boolean esCupoCompleto() {
 		boolean cupoCompleto = false;
-
 		Iterator<Atraccion> atraccion = atraccionesPagas.listIterator();
 		while (atraccion.hasNext()) {
 			if (atraccion.next().esCupoCompleto()) {
@@ -60,6 +62,7 @@ public class PromocionAXB extends Promocion {
 		}
 		return cupoCompleto;
 	}
+
 	@Override
 	public String reduccionCostoTotal() {
 		return (super.getNombre() + ":" + "Comprando " + getAtraccionesPagas() + super.getAtraccion() + "gratis");
