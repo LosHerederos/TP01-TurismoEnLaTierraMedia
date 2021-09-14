@@ -8,7 +8,7 @@ public class AtraccionTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		Atraccion atraccion = new Atraccion(25, 2.5, 10, TipoDeAtracciones.AVENTURA, "Una aventura como ninguna");
 	}
 
 }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class SistemaDeSugerencias {
@@ -16,8 +14,10 @@ public class SistemaDeSugerencias {
 
 	public SistemaDeSugerencias() {
 		setAtracciones(Archivos.cargarAtracciones());
+		
 		setPromociones(Archivos.cargarPromociones(this.atracciones));
 		setUsuarios(Archivos.cargarUsuarios());
+		
 	}
 
 
@@ -64,58 +64,42 @@ public class SistemaDeSugerencias {
 	}
 
 	public void menuSugerencias(Usuario usuario){
-		Queue<Sugeribles> sugerencias = new LinkedList<>();
-		System.out.println("Bienvenido " + usuario.getNombre() + "!");
-		Scanner sc = new Scanner(System.in);
-		int respuesta;
+		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
 		ordenarPromocionesPorPrecioYTiempo();
+		System.out.println("Bienvenido " + usuario.getNombre() + "!");
+		sugerencias.addAll(this.promociones);
+		sugerencias.addAll(this.atracciones);
+		sugerencias.removeIf(sugerencia -> !cumplePreferenicas(sugerencia, usuario));
 		System.out.println("Basandonos es sus preferencias, tenemos las siguientes promociones y atraciones vigentes");
-		sugerencias = sugerirConPreferencias(usuario);
-		sugerencias.addAll(sugerirSinPreferencias(usuario));
-		while (usuario.getPresupuesto() > 0 && usuario.getTiempoDisponible() > 0 && !sugerencias.isEmpty()) {
-			if (!usuario.estaEnElItinerario(sugerencias.peek()) && sugerenciaDisponible(sugerencias.peek(), usuario)) {
-				System.out.println("Para aceptar la sugerencia ingrese un 1, en caso de rechazarla ingrese 0");
-				System.out.println(sugerencias.peek().toString());
-				respuesta = sc.nextInt();
-				if (respuesta == 1) {
-					sugerencias.peek().agregarVisitante();
-					usuario.aceptarSugerencia(sugerencias.poll());
-				}else{
-					sugerencias.remove();
-				}
-			}	
+		mostrarOpciones(sugerencias, usuario);
+		if (usuario.poseeRecursosSuficientes(0, 0)) {
+			System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
+			sugerencias.addAll(this.promociones);
+			sugerencias.addAll(this.atracciones);
+			sugerencias.removeIf(sugerencia -> cumplePreferenicas(sugerencia, usuario));
+			mostrarOpciones(sugerencias, usuario);
 		}
-		
 		System.out.println("Su itinerario quedo de la siguiente forma: " + usuario.getItinerario().toString());
 	}
-	
-	private Queue<Sugeribles> sugerirConPreferencias(Usuario usuario){
-		Queue<Sugeribles> sugerencias = new LinkedList<>();
-		List<Sugeribles> opciones = new ArrayList<>();
-		opciones.addAll(promociones);
-		opciones.addAll(atracciones);
-		for (Sugeribles opc : opciones) {
-			if (cumplePreferenicas(opc, usuario)) {
-				sugerencias.add(opc);
-			}
-			
-		}
-		
-		return sugerencias;
-	}
 
-	private Queue<Sugeribles> sugerirSinPreferencias(Usuario usuario){
-		Queue<Sugeribles> sugerencias = new LinkedList<>();
-		List<Sugeribles> opciones = new ArrayList<>();
-		opciones.addAll(promociones);
-		opciones.addAll(atracciones);
-		for (Sugeribles opc : opciones) {
-			if (!cumplePreferenicas(opc, usuario)) {
-				sugerencias.add(opc);
+	private void mostrarOpciones(LinkedList<Sugeribles> sugerencias, Usuario usuario){
+		ordenarPromocionesPorPrecioYTiempo();
+		Scanner sc = new Scanner(System.in);
+		int respuesta;
+		System.out.println("entro");
+		while (usuario.poseeRecursosSuficientes(0, 0) && !sugerencias.isEmpty()) {
+			if (!usuario.estaEnElItinerario(sugerencias.getFirst()) && sugerenciaDisponible(sugerencias.getFirst(), usuario)) {
+				System.out.println("Para aceptar la sugerencia ingrese un 1, en caso de rechazarla ingrese 0");
+				System.out.println(sugerencias.getFirst().toString());
+				respuesta = sc.nextInt();
+				if (respuesta == 1) {
+					sugerencias.getFirst().agregarVisitante();
+					usuario.aceptarSugerencia(sugerencias.getFirst());
+				}
 			}
-			
+			sugerencias.removeFirst();
 		}
-		return sugerencias;
+		System.out.println("sale");
 	}
 
 	public void ordenarPromocionesPorPrecioYTiempo() {
@@ -139,14 +123,11 @@ public class SistemaDeSugerencias {
 	}
 
 	private Boolean cumplePreferenicas(Sugeribles sugerencia, Usuario usuario){
-		return (sugerencia.getTipoDeAtraccion().equals(usuario.getTipoFavorito()) &&
-		 sugerencia.getCosto() <= usuario.getPresupuesto() &&
-		 sugerencia.getTiempo() <= usuario.getTiempoDisponible());
+		return (sugerencia.getTipoDeAtraccion().equals(usuario.getTipoFavorito()));
 	}
 
-	private Boolean sugerenciaDisponible(Sugeribles sugerencia, Usuario usuario){
-		return !sugerencia.esCupoCompleto() && sugerencia.getCosto() <= usuario.getPresupuesto() 
-		&& sugerencia.getTiempo() <= usuario.getTiempoDisponible();
+	private Boolean sugerenciaDisponible(Sugeribles opc, Usuario usuario){
+		return !opc.esCupoCompleto() && usuario.poseeRecursosSuficientes(opc.getCosto(), opc.getTiempo());
 	}
 
 	@Override

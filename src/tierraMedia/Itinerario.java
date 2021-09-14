@@ -66,7 +66,19 @@ public class Itinerario {
 
 	@Override
 	public String toString() {
-		return "Itinerario [atracciones=" + atracciones.toString() + ", promociones=" + promociones.toString() + "]";
+		String listaDeAtracciones = "";
+		String listaDePromociones = "";
+		
+		for (Atraccion atraccion : atracciones) {
+			listaDeAtracciones += atraccion + "\n";
+		}
+		
+		for (Promocion promocion : promociones) {
+			listaDePromociones += promocion + "\n";
+		}
+		return "Itinerario\n"
+				+ "Atracciones\n" + listaDeAtracciones
+				+ "Promociones\n" + listaDePromociones;
 	}
 	
 	
