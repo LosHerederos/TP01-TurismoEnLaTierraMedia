@@ -2,6 +2,8 @@ package tierraMedia;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -85,8 +87,25 @@ public class ArchivosTest {
 	
 	
 	@Test
-	public void generarArchivosDeSalida() {
+	public void generarArchivosDeSalidaTest() {
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios.add(new Usuario("Pedro", 100, 10.0, TipoDeAtracciones.AVENTURA));
+		usuarios.add(new Usuario("Jose", 70, 7.5, TipoDeAtracciones.DEGUSTACION));
+//		String nombre, int presupuesto, double tiempoDisponible,TipoDeAtracciones tipoFavorito
+		Atraccion atraccion1 = new Atraccion(25, 2.5, 10, TipoDeAtracciones.AVENTURA, "Una aventura como ninguna1");
+		Atraccion atraccion2 = new Atraccion(25, 2.5, 10, TipoDeAtracciones.AVENTURA, "Una aventura como ninguna2");
 		
+		usuarios.get(0).aceptarSugerencia(atraccion1);
+		usuarios.get(0).aceptarSugerencia(atraccion2);
+		usuarios.get(1).aceptarSugerencia(atraccion2);
+		
+		//Promocion promo1 = new Promocion 
+		try {
+			Archivos.generarArchivosDeSalida(usuarios);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

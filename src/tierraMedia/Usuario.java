@@ -106,7 +106,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Nombre: " + this.nombre + "\t\tTipo de Atracción: " + this.tipoFavorito;
+		return "Nombre: " + this.nombre + "\t\tTipo de favorito: " + this.tipoFavorito + "\n"
+				+ this.itinerario;
 	}
 	
 	

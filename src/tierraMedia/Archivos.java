@@ -115,7 +115,7 @@ public class Archivos {
 		return promociones;
 	}
 	
-	public static void generarArchivosDeSalida(Usuario[] usuarios) throws IOException {
+	public static void generarArchivosDeSalida(List<Usuario> usuarios) throws IOException {
 		PrintWriter salida;
 		
 		for (Usuario usuario : usuarios) {
