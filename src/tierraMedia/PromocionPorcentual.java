@@ -27,7 +27,7 @@ public class PromocionPorcentual extends Promocion {
 	private double calculoPromocion(Double procentaje) {
 		double total = 0;
 		total += super.getCosto();
-		return total - (total * getPorcentaje());
+		return total - (total * this.getPorcentaje());
 	}
 
 	public double descuento(Double descuento) {
