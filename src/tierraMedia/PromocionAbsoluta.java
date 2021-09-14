@@ -10,7 +10,8 @@ public class PromocionAbsoluta extends Promocion {
 		this.setDescuento(descuento);
 	}
 
-	public int getDescuento() {
+	@Override
+	public int getCosto() {
 		return descuento;
 	}
 
@@ -21,6 +22,6 @@ public class PromocionAbsoluta extends Promocion {
 
 	@Override
 	protected String reduccionCostoTotal() {
-		return (super.getNombre() + ":" + super.getAtraccion() + " " + "a monedas" + this.getDescuento());
+		return (super.getNombre() + ":" + super.getAtraccion() + " " + "a monedas" + this.getCosto());
 	}
 }

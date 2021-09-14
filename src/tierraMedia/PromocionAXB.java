@@ -21,6 +21,15 @@ public class PromocionAXB extends Promocion {
 
 	}
 
+	@Override
+	public int getCosto() {
+		int costoTotal = 0;
+		for (Atraccion atracciones : atraccionesPagas) {
+			costoTotal = atracciones.getCosto();
+		}
+		return (costoTotal);
+	}
+
 	public void setAtraccionesPagas(List<Atraccion> atraccionesPagas) {
 		this.atraccionesPagas.addAll(atraccionesPagas);
 	}
