@@ -79,10 +79,21 @@ public abstract class Promocion implements Sugeribles {
 		boolean cupoCompleto = false;
 
 		Iterator<Atraccion> atraccion = atracciones.listIterator();
-		while (atraccion.hasNext() && !atraccion.next().esCupoCompleto()) {
+		while (atraccion.hasNext())  {
+			 if(atraccion.next().esCupoCompleto()) {
 			cupoCompleto = atraccion.next().esCupoCompleto();
+			 }
 		}
 		return cupoCompleto;
+
+	}
+
+	public String getNombreDeAtraccion() {
+		String nombreAtraccion = "";
+		for (Atraccion atraccion : atracciones) {
+			nombreAtraccion += atraccion.getNombre() +"\t\n";
+		}
+		return nombreAtraccion;
 
 	}
 
@@ -99,6 +110,7 @@ public abstract class Promocion implements Sugeribles {
 
 	@Override
 	public String toString() {
-		return this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t" + this.getCosto() + "\t" + this.getTiempo();
+		return this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t" + this.getCosto() + "\t" + this.getTiempo() + "\t"
+				+ this.getNombreDeAtraccion();
 	}
 }
