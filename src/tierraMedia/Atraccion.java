@@ -26,26 +26,15 @@ public class Atraccion implements Sugeribles {
 	}
 
 	public void agregarVisitante() {
-		if (this.visitantes >= this.cupoPersonas) {
-			Error cupoCompleto = new Error("el cupo de la atracci�n " + this.nombre + " esta completo");
-			throw cupoCompleto;
-		}
-
 		this.visitantes += 1;
 	}
 
 	// getters y setters
-	@Override
 	public int getCosto() {
 		return this.costoVisita;
 	}
 
 	public void setCostoVisita(int costoVisita) {
-		if (costoVisita < 0) {
-			Error costoNegativo = new Error("El costo de la atracci�n " + this.nombre + " no puede ser negativo");
-			throw costoNegativo;
-		}
-
 		this.costoVisita = costoVisita;
 	}
 
@@ -55,12 +44,6 @@ public class Atraccion implements Sugeribles {
 	}
 
 	public void setTiempoParaRealizarla(double tiempoParaRealizarla) {
-		if (tiempoParaRealizarla <= 0) {
-			Error tiempoInvalido = new Error(
-					"El tiempo que insume visitar la atracci�n " + this.nombre + " no puede ser cero ni negativo");
-			throw tiempoInvalido;
-		}
-
 		this.tiempoParaRealizarla = tiempoParaRealizarla;
 	}
 
@@ -69,17 +52,9 @@ public class Atraccion implements Sugeribles {
 	}
 
 	public void setCupoPersonas(int cupoPersonas) {
-		if (cupoPersonas <= 0) {
-			Error cupoPersonasInvalido = new Error(
-					"El cupo de personas de la atracci�n " + this.nombre + " no puede ser cero ni negativo");
-			throw cupoPersonasInvalido;
-		}
-
 		this.cupoPersonas = cupoPersonas;
 	}
 
-	// �C�mo val�do que tipo de atracci�n sea de tipo enumerado correcto?
-	@Override
 	public TipoDeAtracciones getTipoDeAtraccion() {
 		return (this.tipoDeAtracciones);
 	}
@@ -93,12 +68,6 @@ public class Atraccion implements Sugeribles {
 	}
 
 	public void setVisitantes(int visitantes) {
-		if (visitantes < 0) {
-			Error visitantesNegativo = new Error(
-					"El n�mero de visitantes de la atracci�n " + this.nombre + " no puede ser negativo");
-			throw visitantesNegativo;
-		}
-
 		this.visitantes = visitantes;
 	}
 
