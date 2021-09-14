@@ -72,6 +72,15 @@ public class ArchivosTest {
 		assertEquals("PromocionPorcentual", promociones.get(0).getClass().getSimpleName());
 		assertSame(atracciones.get(0), promociones.get(0).getAtraccion().get(0));
 		assertSame(atracciones.get(1), promociones.get(0).getAtraccion().get(1));
+		
+		assertEquals("PromocionAbsoluta", promociones.get(1).getClass().getSimpleName());
+		assertSame(atracciones.get(0), promociones.get(1).getAtraccion().get(0));
+		assertSame(atracciones.get(1), promociones.get(1).getAtraccion().get(1));
+		
+		assertEquals("PromocionAXB", promociones.get(2).getClass().getSimpleName());
+		assertSame(atracciones.get(0), promociones.get(2).getAtraccion().get(0));
+		assertSame(atracciones.get(1), promociones.get(2).getAtraccion().get(1));
+		
 	}
 	
 	

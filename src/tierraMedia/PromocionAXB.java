@@ -12,13 +12,14 @@ public class PromocionAXB extends Promocion {
 
 	}
 
-	public String getAtraccionesPagas() {
-		String nombreAtraccion = "";
-		for (Atraccion atracciones : atraccionesPagas) {
-			nombreAtraccion = atracciones.getNombre();
-		}
-		return (nombreAtraccion);
-
+	//public String getAtraccionesPagas() {
+	public List<Atraccion> getAtraccionesPagas() {
+//		String nombreAtraccion = "";
+//		for (Atraccion atracciones : atraccionesPagas) {
+//			nombreAtraccion = atracciones.getNombre();
+//		}
+//		return (nombreAtraccion);
+		return this.atraccionesPagas;
 	}
 
 	@Override
