@@ -54,6 +54,7 @@ public class PromocionAXB extends Promocion {
 	@Override
 	public boolean esCupoCompleto() {
 		boolean cupoCompleto = false;
+		super.esCupoCompleto();
 		Iterator<Atraccion> atraccion = atraccionesPagas.listIterator();
 		while (atraccion.hasNext()) {
 			if (atraccion.next().esCupoCompleto()) {
