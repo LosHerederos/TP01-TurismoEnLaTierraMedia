@@ -26,7 +26,7 @@ public class PromocionAXB extends Promocion {
 	public int getCosto() {
 		int costoTotal = 0;
 		for (Atraccion atracciones : atraccionesPagas) {
-			costoTotal = atracciones.getCosto();
+			costoTotal += atracciones.getCosto();
 		}
 		return (costoTotal);
 	}

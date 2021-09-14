@@ -79,10 +79,10 @@ public abstract class Promocion implements Sugeribles {
 		boolean cupoCompleto = false;
 
 		Iterator<Atraccion> atraccion = atracciones.listIterator();
-		while (atraccion.hasNext())  {
-			 if(atraccion.next().esCupoCompleto()) {
-			cupoCompleto = atraccion.next().esCupoCompleto();
-			 }
+		while (atraccion.hasNext()) {
+			if (atraccion.next().esCupoCompleto()) {
+				cupoCompleto = true;
+			}
 		}
 		return cupoCompleto;
 
@@ -91,7 +91,7 @@ public abstract class Promocion implements Sugeribles {
 	public String getNombreDeAtraccion() {
 		String nombreAtraccion = "";
 		for (Atraccion atraccion : atracciones) {
-			nombreAtraccion += atraccion.getNombre() +"\t\n";
+			nombreAtraccion += atraccion.getNombre() + "\t\n";
 		}
 		return nombreAtraccion;
 
