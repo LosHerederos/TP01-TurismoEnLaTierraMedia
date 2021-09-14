@@ -91,7 +91,7 @@ public abstract class Promocion implements Sugeribles {
 	public String getNombreDeAtraccion() {
 		String nombreAtraccion = "";
 		for (Atraccion atraccion : atracciones) {
-			nombreAtraccion += atraccion.getNombre() + "\t\n";
+			nombreAtraccion += atraccion.getNombre() + "\n \t\t\t\t\t\t\t\t\t\t\t    ";
 		}
 		return nombreAtraccion;
 
@@ -110,7 +110,7 @@ public abstract class Promocion implements Sugeribles {
 
 	@Override
 	public String toString() {
-		return this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t" + this.getCosto() + "\t" + this.getTiempo() + "\t"
+		return "|Nombre de Pack| \t\t |tipo de atraccion| \t |Costo| \t |tiempo| \t |Atracciones incluidas|  \n"+ this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t    " + this.getCosto() + "\t\t    " + this.getTiempo() + "\t\t     "
 				+ this.getNombreDeAtraccion();
 	}
 }

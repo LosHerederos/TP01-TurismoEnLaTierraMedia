@@ -1,10 +1,10 @@
 # tipo promocion / nombre / atracciones ( : ) / otros
-PromocionPorcentual, Pack aventura, (Bosque Negro : Mordor), 20.0
-PromocionPorcentual, Pack degustación, (Oktober Fest : Bodega El Barril), 20.0
-PromocionPorcentual, Pack paisajes, (Isla de los Pajaros : La Jungla), 20.0
-PromocionPorcentual, Pack aventura1, (Tren al Oeste : Viaje al Futuro : Tierra de Gigantes), 30.0
-PromocionPorcentual, Pack degustación1, (Sabores de Asia : Bodega El Barril), 15.0
-PromocionPorcentual, Pack paisajes1, (Isla de los Pajaros : La Jungla), 20.0
+PromocionPorcentual, Pack aventura, (Bosque Negro : Mordor), 0.2
+PromocionPorcentual, Pack degustación, (Oktober Fest : Bodega El Barril), 0.2
+PromocionPorcentual, Pack paisajes, (Isla de los Pajaros : La Jungla), 0.2
+PromocionPorcentual, Pack aventura1, (Tren al Oeste : Viaje al Futuro : Tierra de Gigantes), 0.3
+PromocionPorcentual, Pack degustación1, (Sabores de Asia : Bodega El Barril), 0.15
+PromocionPorcentual, Pack paisajes1, (Isla de los Pajaros : La Jungla), 0.2
 PromocionAbsoluta, Pack aventura2, (Autos Locos : Montaña Extrema), 5
 PromocionAbsoluta, Pack degustación2, (Burger House : Todo Chocolate), 15
 PromocionAbsoluta, Pack paisajes2, (Isla de los Pajaros : Playa Paraiso), 10
