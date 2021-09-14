@@ -65,7 +65,7 @@ public class SistemaDeSugerencias {
 
 	public void menuSugerencias(Usuario usuario){
 		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
-		ordenarPromocionesPorPrecioYTiempo();
+		ordenarPorPrecioYTiempo();
 		System.out.println("Bienvenido " + usuario.getNombre() + "!");
 		sugerencias.addAll(this.promociones);
 		sugerencias.addAll(this.atracciones);
@@ -83,10 +83,8 @@ public class SistemaDeSugerencias {
 	}
 
 	private void mostrarOpciones(LinkedList<Sugeribles> sugerencias, Usuario usuario){
-		ordenarPromocionesPorPrecioYTiempo();
 		Scanner sc = new Scanner(System.in);
 		int respuesta;
-		System.out.println("entro");
 		while (usuario.poseeRecursosSuficientes(0, 0) && !sugerencias.isEmpty()) {
 			if (!usuario.estaEnElItinerario(sugerencias.getFirst()) && sugerenciaDisponible(sugerencias.getFirst(), usuario)) {
 				System.out.println("Para aceptar la sugerencia ingrese un 1, en caso de rechazarla ingrese 0");
@@ -99,10 +97,9 @@ public class SistemaDeSugerencias {
 			}
 			sugerencias.removeFirst();
 		}
-		System.out.println("sale");
 	}
 
-	public void ordenarPromocionesPorPrecioYTiempo() {
+	public void ordenarPorPrecioYTiempo() {
 		Collections.sort(this.promociones, new OrdenadorPorPrecioYTiempo());
 		Collections.sort(this.atracciones, new OrdenadorPorPrecioYTiempo());
 	}
