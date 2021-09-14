@@ -16,7 +16,12 @@ public class SistemaDeSugerencias {
 		setAtracciones(Archivos.cargarAtracciones());
 		setPromociones(Archivos.cargarPromociones(this.atracciones));
 		setUsuarios(Archivos.cargarUsuarios());
-		
+		try {
+			Archivos.generarArchivosDeSalida(this.usuarios);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
