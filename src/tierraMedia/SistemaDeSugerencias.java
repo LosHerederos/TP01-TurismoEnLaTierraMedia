@@ -79,7 +79,7 @@ public class SistemaDeSugerencias {
 		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
 		sugerencias.addAll(this.promociones);
 		sugerencias.addAll(this.atracciones);
-		sugerencias.removeIf(sugerencia -> cumplePreferenicas(sugerencia, usuario).equals(preferencias));
+		sugerencias.removeIf(sugerencia -> cumplePreferencias(sugerencia, usuario).equals(preferencias));
 		return sugerencias;
 	}
 
@@ -119,7 +119,7 @@ public class SistemaDeSugerencias {
 		 && promo.getTipoDeAtraccion() != null);
 	}
 
-	private Boolean cumplePreferenicas(Sugeribles sugerencia, Usuario usuario){
+	private Boolean cumplePreferencias(Sugeribles sugerencia, Usuario usuario){
 		return (sugerencia.getTipoDeAtraccion().equals(usuario.getTipoFavorito()));
 	}
 
@@ -134,4 +134,4 @@ public class SistemaDeSugerencias {
 		 "\n Usuarios="
 				+ usuarios + "]";
 	}
-}	
+}
