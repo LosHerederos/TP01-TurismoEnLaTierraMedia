@@ -33,5 +33,10 @@ public class PromocionPorcentual extends Promocion {
 	public double descuento(Double descuento) {
 		return (this.calculoPromocion(descuento));
 	}
+	@Override
+	public int getCosto() {
+		return ((int)this.descuento(this.getPorcentaje()));
+		
+	}
 
 }
