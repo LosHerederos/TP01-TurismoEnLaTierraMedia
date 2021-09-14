@@ -14,7 +14,6 @@ public class SistemaDeSugerencias {
 
 	public SistemaDeSugerencias() {
 		setAtracciones(Archivos.cargarAtracciones());
-		
 		setPromociones(Archivos.cargarPromociones(this.atracciones));
 		setUsuarios(Archivos.cargarUsuarios());
 		
@@ -64,32 +63,33 @@ public class SistemaDeSugerencias {
 	}
 
 	public void menuSugerencias(Usuario usuario){
-		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
 		ordenarPorPrecioYTiempo();
+		System.out.println("________________________________________________________________________________________________________");
 		System.out.println("Bienvenido " + usuario.getNombre() + "!");
-		sugerencias.addAll(this.promociones);
-		sugerencias.addAll(this.atracciones);
-		sugerencias.removeIf(sugerencia -> !cumplePreferenicas(sugerencia, usuario));
 		System.out.println("Basandonos es sus preferencias, tenemos las siguientes promociones y atraciones vigentes");
-		mostrarOpciones(sugerencias, usuario);
+		mostrarOpciones(enlistarSugerencias(usuario, false), usuario);
 		if (usuario.poseeRecursosSuficientes(0, 0)) {
 			System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
-			sugerencias.addAll(this.promociones);
-			sugerencias.addAll(this.atracciones);
-			sugerencias.removeIf(sugerencia -> cumplePreferenicas(sugerencia, usuario));
-			mostrarOpciones(sugerencias, usuario);
+			mostrarOpciones(enlistarSugerencias(usuario, true), usuario);
 		}
 		System.out.println("Su itinerario quedo de la siguiente forma: " + usuario.getItinerario().toString());
 	}
 
+	private LinkedList<Sugeribles> enlistarSugerencias(Usuario usuario, Boolean preferencias){
+		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
+		sugerencias.addAll(this.promociones);
+		sugerencias.addAll(this.atracciones);
+		sugerencias.removeIf(sugerencia -> cumplePreferenicas(sugerencia, usuario).equals(preferencias));
+		return sugerencias;
+	}
+
 	private void mostrarOpciones(LinkedList<Sugeribles> sugerencias, Usuario usuario){
-		Scanner sc = new Scanner(System.in);
 		int respuesta;
 		while (usuario.poseeRecursosSuficientes(0, 0) && !sugerencias.isEmpty()) {
 			if (!usuario.estaEnElItinerario(sugerencias.getFirst()) && sugerenciaDisponible(sugerencias.getFirst(), usuario)) {
 				System.out.println("Para aceptar la sugerencia ingrese un 1, en caso de rechazarla ingrese 0");
 				System.out.println(sugerencias.getFirst().toString());
-				respuesta = sc.nextInt();
+				respuesta = new Scanner(System.in).nextInt();
 				if (respuesta == 1) {
 					sugerencias.getFirst().agregarVisitante();
 					usuario.aceptarSugerencia(sugerencias.getFirst());
