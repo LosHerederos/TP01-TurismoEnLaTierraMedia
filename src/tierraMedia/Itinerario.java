@@ -8,8 +8,8 @@ public class Itinerario {
 	private List<Promocion> promociones;
 	
 	public Itinerario() {
-		this.atracciones = new ArrayList<>();
-		this.promociones = new ArrayList<>();
+		this.atracciones = new ArrayList<Atraccion>();
+		this.promociones = new ArrayList<Promocion>();
 	}
 	
 	public Itinerario(List<Atraccion> atracciones, List<Promocion> promociones) {
@@ -38,20 +38,18 @@ public class Itinerario {
 		if (sugerencia.getClass().equals(Atraccion.class)) {
 			this.atracciones.add((Atraccion) sugerencia);
 		} else {
-			agregarPromocion((Promocion) sugerencia);
+			this.promociones.add((Promocion) sugerencia);
 		}
 		sugerencia.agregarVisitante();
-	}
-	
-	private void agregarPromocion(Promocion promo) {
-		this.promociones.add(promo);
-		this.atracciones.addAll(promo.getAtraccion());
 	}
 	
 	public double horasNecesarias() {
 		double horas = 0;
 		for (Promocion promo : promociones) {
 			horas += promo.getTiempo();
+		}
+		for (Atraccion atraccion : atracciones) {
+			horas += atraccion.getTiempo();
 		}
 		return horas;
 	}
@@ -60,6 +58,9 @@ public class Itinerario {
 		int total = 0;
 		for (Promocion promo : promociones) {
 			total+=promo.getCosto();
+		}
+		for (Atraccion atraccion : atracciones) {
+			total += atraccion.getCosto();
 		}
 		return total;
 	}
@@ -76,9 +77,18 @@ public class Itinerario {
 		for (Promocion promocion : promociones) {
 			listaDePromociones += promocion + "\n";
 		}
-		return "Itinerario\n"
-				+ "Atracciones\n" + listaDeAtracciones
-				+ "Promociones\n" + listaDePromociones;
+		return "\nItinerario\n"
+				+ "====================================================================================================\n"
+				+ "Atracciones\n"
+				+ "----------------------------------------------------------------------------------------------------\n"
+		        + listaDeAtracciones
+		        + "====================================================================================================\n"
+				+ "Promociones\n"
+				+ "----------------------------------------------------------------------------------------------------\n"
+		        + listaDePromociones
+		        + "====================================================================================================\n"
+		        + "Costo total: " + this.costoTotal() + "\t\t\tTiempo total: " + this.horasNecesarias() + "\n"
+				+ "====================================================================================================\n";
 	}
 	
 	
