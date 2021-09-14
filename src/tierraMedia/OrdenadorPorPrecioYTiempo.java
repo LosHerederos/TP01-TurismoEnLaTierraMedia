@@ -1,15 +1,15 @@
 package tierraMedia;
 import java.util.Comparator;
 
-public class OrdenadorPorPrecioYTiempo implements Comparator<Promocion> {
+public class OrdenadorPorPrecioYTiempo implements Comparator<Sugeribles> {
 
 	@Override
-	public int compare(Promocion promocion, Promocion otroPromocion) {
-		if (Integer.compare(promocion.getCosto(),otroPromocion.getCosto()) == 0){
-			return Double.compare(promocion.getTiempo(), otroPromocion.getTiempo()) * -1;
+	public int compare(Sugeribles sugerencia, Sugeribles otrasugerencia) {
+		if (Integer.compare(sugerencia.getCosto(),otrasugerencia.getCosto()) == 0){
+			return Double.compare(sugerencia.getTiempo(), otrasugerencia.getTiempo()) * -1;
 		}
-		return Integer.compare(promocion.getCosto(), 
-				otroPromocion.getCosto()) * -1;
+		return Integer.compare(sugerencia.getCosto(), 
+				otrasugerencia.getCosto()) * -1;
 	}
 
 }
