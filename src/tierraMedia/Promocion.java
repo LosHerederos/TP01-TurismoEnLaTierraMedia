@@ -1,12 +1,12 @@
 package tierraMedia;
 
 import java.util.ArrayList;
-//import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class Promocion implements Sugeribles {
 	protected String nombre;
-	private List<Atraccion> atracciones = new ArrayList<Atraccion>();
+	private List<Atraccion> atracciones = new ArrayList<>();
 	private TipoDeAtracciones tipoDeAtraccion;
 
 	public Promocion(String nombre, List<Atraccion> atracciones) {
@@ -16,7 +16,8 @@ public abstract class Promocion implements Sugeribles {
 	}
 
 	public Promocion() {
-		super();
+		this.setNombre(null);
+		this.setTipodeAtraccion();
 	}
 
 	public String getNombre() {
@@ -31,13 +32,8 @@ public abstract class Promocion implements Sugeribles {
 		this.atracciones.addAll(atracciones);
 	}
 
-	public String getAtraccion() {
-		String nombre = "";
-		for (Atraccion atraccion : atracciones) {
-			nombre += atraccion.getNombre() + ","
-					;
-		}
-		return (nombre);
+	public List<Atraccion> getAtraccion() {
+		return (atracciones);
 	}
 
 	@Override
@@ -67,6 +63,45 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
+	@Override
+	public void agregarVisitante() {
+		if (!this.esCupoCompleto()) {
+			for (Atraccion atraccion : atracciones) {
+				atraccion.agregarVisitante();
+			}
+
+		}
+	}
+
+	@Override
+	public boolean esCupoCompleto() {
+		boolean cupoCompleto = false;
+
+		Iterator<Atraccion> atraccion = atracciones.listIterator();
+		while (atraccion.hasNext()) {
+			if (atraccion.next().esCupoCompleto()) {
+				cupoCompleto = true;
+			}
+		}
+		return cupoCompleto;
+
+	}
+
+	public String espacios() {
+		return nombre;
+
+	}
+
+	public String getNombreDeAtraccion() {
+		String nombreAtraccion = "";
+		for (Atraccion atraccion : atracciones) {
+			nombreAtraccion += "\n" + String.format("%110s", atraccion.getNombre());
+		}
+
+		return nombreAtraccion;
+
+	}
+
 	public void setTipodeAtraccion() {
 		this.tipoDeAtraccion = atracciones.get(0).getTipoDeAtraccion();
 	}
@@ -77,4 +112,11 @@ public abstract class Promocion implements Sugeribles {
 	}
 
 	abstract String reduccionCostoTotal();
+
+	@Override
+	public String toString() {
+		return String.format("%8s %38s %8s %14s %1s", this.getNombre(), this.getTipoDeAtraccion(), this.getCosto(),
+				this.getTiempo(), this.getNombreDeAtraccion());
+
+	}
 }
