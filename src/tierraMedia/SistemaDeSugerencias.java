@@ -72,7 +72,7 @@ public class SistemaDeSugerencias {
 		ordenarPorPrecioYTiempo();
 		System.out.println("____________________________________________________________________________________________________");
 		System.out.println("Bienvenido " + usuario.getNombre() + "!");
-		System.out.println("Basandonos es sus preferencias, tenemos las siguientes promociones y atraciones para ofrecerle:");
+		System.out.println("Basandonos en sus preferencias, tenemos las siguientes promociones y atraciones para ofrecerle:");
 		mostrarOpciones(enlistarSugerencias(usuario, false), usuario);
 		if (usuario.poseeRecursosSuficientes(0, 0)) {
 			//System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
