@@ -104,8 +104,8 @@ public class Atraccion implements Sugeribles {
 	public String toString() {
 		return this.nombre
 				+ "\t\t\t" + this.tipoDeAtracciones
-				+ "\t\t" + this.costoVisita
-				+ "\t" + this.tiempoParaRealizarla;
+				+ "\t    " + this.costoVisita
+				+ "\t\t    " + this.tiempoParaRealizarla;
 	}
 
 }
