@@ -93,8 +93,9 @@ public abstract class Promocion implements Sugeribles {
 	public String getNombreDeAtraccion() {
 		String nombreAtraccion = "";
 		for (Atraccion atraccion : atracciones) {
-			nombreAtraccion += atraccion.getNombre() + "\n\t\t";
+			nombreAtraccion += atraccion.getNombre() + ", ";
 		}
+		
 		return nombreAtraccion;
 
 	}

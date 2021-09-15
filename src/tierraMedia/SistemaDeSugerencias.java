@@ -103,7 +103,7 @@ public class SistemaDeSugerencias {
 					System.out.println("|Nombre de Pack| \t\t |tipo de atraccion| \t |Costo| \t |tiempo| \t |Atracciones incluidas|");
 				}
 				System.out.println(sugerencias.getFirst().toString());
-				System.out.print("¿Acepta nuestra sugerencia? (0: Rechazarla / 1: Aceptarla): ");
+				System.out.print("\n¿Acepta nuestra sugerencia? (0: Rechazarla / 1: Aceptarla): ");
 				respuesta = new Scanner(System.in).nextInt();
 				if (respuesta == 1) {
 					sugerencias.getFirst().agregarVisitante();
