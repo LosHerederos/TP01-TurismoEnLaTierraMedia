@@ -86,14 +86,16 @@ public abstract class Promocion implements Sugeribles {
 		return cupoCompleto;
 
 	}
+
 	public String espacios() {
 		return nombre;
-		
+
 	}
+
 	public String getNombreDeAtraccion() {
 		String nombreAtraccion = "";
 		for (Atraccion atraccion : atracciones) {
-			nombreAtraccion += atraccion.getNombre() + "\n\t\t";
+			nombreAtraccion += String.format("%20s\n\t\t\t\t\t\t\t ", atraccion.getNombre());
 		}
 		return nombreAtraccion;
 
@@ -112,9 +114,9 @@ public abstract class Promocion implements Sugeribles {
 
 	@Override
 	public String toString() {
-		return "|Nombre de Pack| \t\t |tipo de atraccion| \t |Costo| \t |tiempo| \t |Atracciones incluidas|  \n"
-				+ this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t    " + this.getCosto() + "\t\t    "
-				+ this.getTiempo() + "\t\t     " + this.getNombreDeAtraccion();
-		
+		return (String.format("%8s %25s %8s %8s %20s \n %8s %28s %2s %8s %1s", "|Nombre de Pack|",
+				"|tipo de atraccion|", "|Costo|", "|tiempo|", "|Atracciones incluidas|", this.getNombre(),
+				this.getTipoDeAtraccion(), this.getCosto(), this.getTiempo(), this.getNombreDeAtraccion()));
+
 	}
 }
