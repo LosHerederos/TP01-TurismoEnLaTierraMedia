@@ -87,11 +87,6 @@ public abstract class Promocion implements Sugeribles {
 
 	}
 
-	public String espacios() {
-		return nombre;
-
-	}
-
 	public String getNombreDeAtraccion() {
 		String nombreAtraccion = "";
 		for (Atraccion atraccion : atracciones) {
