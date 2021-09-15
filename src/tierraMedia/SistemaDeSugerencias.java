@@ -70,15 +70,16 @@ public class SistemaDeSugerencias {
 
 	public void menuSugerencias(Usuario usuario){
 		ordenarPorPrecioYTiempo();
-		System.out.println("________________________________________________________________________________________________________");
+		System.out.println("____________________________________________________________________________________________________");
 		System.out.println("Bienvenido " + usuario.getNombre() + "!");
-		System.out.println("Basandonos es sus preferencias, tenemos las siguientes promociones y atraciones vigentes");
+		System.out.println("Basandonos es sus preferencias, tenemos las siguientes promociones y atraciones para ofrecerle:");
 		mostrarOpciones(enlistarSugerencias(usuario, false), usuario);
 		if (usuario.poseeRecursosSuficientes(0, 0)) {
-			System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
+			//System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
 			mostrarOpciones(enlistarSugerencias(usuario, true), usuario);
 		}
-		System.out.println("Su itinerario quedo de la siguiente forma: " + usuario.getItinerario().toString());
+		System.out.println("\nSu itinerario quedo de la siguiente forma:");
+		System.out.println(usuario.getItinerario().toString());
 	}
 
 	private LinkedList<Sugeribles> enlistarSugerencias(Usuario usuario, Boolean preferencias){
@@ -93,8 +94,16 @@ public class SistemaDeSugerencias {
 		int respuesta;
 		while (usuario.poseeRecursosSuficientes(0, 0) && !sugerencias.isEmpty()) {
 			if (!usuario.estaEnElItinerario(sugerencias.getFirst()) && sugerenciaDisponible(sugerencias.getFirst(), usuario)) {
-				System.out.println("Para aceptar la sugerencia ingrese un 1, en caso de rechazarla ingrese 0");
+				if (sugerencias.getFirst() instanceof Atraccion) {
+					System.out.println("\nAtracción:");
+					System.out.println("|Nombre de atracción| \t\t |Tipo de atracción| \t |Costo| \t |Tiempo|");
+				}
+				else if (sugerencias.getFirst() instanceof Promocion) {
+					System.out.println("\nPromoción:");
+					System.out.println("|Nombre de Pack| \t\t |tipo de atraccion| \t |Costo| \t |tiempo| \t |Atracciones incluidas|");
+				}
 				System.out.println(sugerencias.getFirst().toString());
+				System.out.print("¿Acepta nuestra sugerencia? (0: Rechazarla / 1: Aceptarla): ");
 				respuesta = new Scanner(System.in).nextInt();
 				if (respuesta == 1) {
 					sugerencias.getFirst().agregarVisitante();

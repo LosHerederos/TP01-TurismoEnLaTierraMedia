@@ -112,8 +112,7 @@ public abstract class Promocion implements Sugeribles {
 
 	@Override
 	public String toString() {
-		return "|Nombre de Pack| \t\t |tipo de atraccion| \t |Costo| \t |tiempo| \t |Atracciones incluidas|  \n"
-				+ this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t    " + this.getCosto() + "\t\t    "
+		return this.nombre + "\t\t\t" + this.tipoDeAtraccion + "\t    " + this.getCosto() + "\t\t    "
 				+ this.getTiempo() + "\t\t     " + this.getNombreDeAtraccion();
 		
 	}
