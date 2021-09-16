@@ -63,10 +63,25 @@ public class PromocionAXB extends Promocion {
 		}
 		return cupoCompleto;
 	}
+	@Override
+	public String getNombreDeAtraccion() {
+		String nombreAtraccion = "";
+		for (Atraccion atraccion : atraccionesPagas) {
+			nombreAtraccion += "\n" + String.format("%110s", atraccion.getNombre());
+		}
+
+		return nombreAtraccion;
+
+	}
+	
 
 	@Override
 	public String reduccionCostoTotal() {
 		return (super.getNombre() + ":" + "Comprando " + this.getAtraccionesPagas() + super.getAtraccion() + "gratis");
+	}
+	@Override
+	public String toString() {
+		return (super.toString()+"\n\t\t\t\t\t\t\t\t\t\t\t\t"+ String.format("%4s %4s","|Atraccion gratis|" , super.getNombreDeAtraccion())+"\n");
 	}
 
 }
