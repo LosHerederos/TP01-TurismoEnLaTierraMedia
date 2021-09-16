@@ -73,10 +73,10 @@ public class SistemaDeSugerencias {
 		System.out.println("____________________________________________________________________________________________________");
 		System.out.println("Bienvenido " + usuario.getNombre() + "!");
 		System.out.println("Basandonos en sus preferencias, tenemos las siguientes promociones y atraciones para ofrecerle:");
-		mostrarOpciones(enlistarSugerencias(usuario, false), usuario);
+		mostrarOpciones(enlistarSugerencias(usuario, true), usuario);
 		if (usuario.poseeRecursosSuficientes(0, 0)) {
 			//System.out.println("Ademas tenemos las siguientes promociones y atraciones vigentes");
-			mostrarOpciones(enlistarSugerencias(usuario, true), usuario);
+			mostrarOpciones(enlistarSugerencias(usuario, false), usuario);
 		}
 		System.out.println("\nSu itinerario quedo de la siguiente forma:");
 		System.out.println(usuario.getItinerario().toString());
@@ -86,9 +86,10 @@ public class SistemaDeSugerencias {
 		LinkedList<Sugeribles> sugerencias = new LinkedList<>();
 		sugerencias.addAll(this.promociones);
 		sugerencias.addAll(this.atracciones);
-		sugerencias.removeIf(sugerencia -> cumplePreferencias(sugerencia, usuario).equals(preferencias));
+		sugerencias.removeIf(sugerencia -> !cumplePreferencias(sugerencia, usuario).equals(preferencias));
 		return sugerencias;
 	}
+
 
 	private void mostrarOpciones(LinkedList<Sugeribles> sugerencias, Usuario usuario){
 		int respuesta;
